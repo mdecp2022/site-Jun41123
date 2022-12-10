@@ -1,7 +1,30 @@
 <h1>About</h1>
 <p>cmsite: wcms use <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> as submodule</p>
 <h1>HW</h1>
-<h2>w13</h2>
+<h2>w14</h2>
+<h3>w14-1</h3>
+<!-- 
+在動態網站頁面中啟用 Brython 執行環境的用法, 請注意動態網站執行所在路徑
+-->
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/','/downloads/py/']});
+}
+</script>
+</p>
+<div id="brython_div"></div>
+<p>
+<script type="text/python">
+from browser import html, document
+link=document["brython_div"]
+link <= html.A("test",href='http://www.google.com')
+#print("test")
+</script>
+</p><h2>w13</h2>
 <p><a href="https://mdecp2022.github.io/site-Jun41123/content/Brython.html?src=https://gist.githubusercontent.com/Jun41123/fdb7b7359a842a33294e372cea2f1855/raw/c9f3c11c1db92bb999464e87220351a3c96d4703/w13_temp_ex1.py">ex1</a></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">'''
 f = c*9/5 + 32
@@ -11,7 +34,16 @@ c = input("請輸入攝氏溫度值")
 #print(type(c))
 c = float(c)
 print(c, c*9/5 + 32)</pre>
-<pre><br/><br/></pre><h2>w12</h2>
+<pre><a href="https://mdecp2022.github.io/site-Jun41123/content/Brython.html?src=https://gist.githubusercontent.com/Jun41123/fdb7b7359a842a33294e372cea2f1855/raw/4df1340e8f74f445c6379f0219e0967f5615f512/w13_temp_ex2.py">ex2</a><br/><br/></pre>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">'''
+f = c*9/5 + 32
+c = (f-32)*5/9
+'''
+c = input("請輸入攝氏溫度值")
+#print(type(c))
+c = float(c)
+print("你輸入的攝氏溫度: " + str(c), "等於華氏溫度: " + str(c*9/5 +32))</pre>
+<pre><br/><br/><br/></pre><h2>w12</h2>
 <p><a href="https://mdecp2022.github.io/site-Jun41123/content/Brython.html?src=https://gist.githubusercontent.com/Jun41123/2c513dabcf2c7e9cdac8f40cfd85068a/raw/94974a99c3d75961e5642acdfe1d5a57c368cfa4/w12_hw_ex1.py">ex1</a></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># Brython 的 input() 可以接受輸入提示字串, 跳出瀏覽器輸入表單後, 將輸入內容以字串取回
 user_input_temp = input("請輸入攝氏溫度值:")
