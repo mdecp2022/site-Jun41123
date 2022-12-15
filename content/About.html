@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li class='has-children'><a href='HW.html'>HW</a><ul class='dropdown'><li><a href='w10.html'>w10</a><li class='has-children'><a href='w14.html'>w14</a><ul class='dropdown'><li><a href='w14-1.html'>w14-1</a></li></ul><li><a href='w13.html'>w13</a><li><a href='w12.html'>w12</a></li></ul><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='cp2022.html'>cp2022</a><li class='has-children'><a href='HW.html'>HW</a><ul class='dropdown'><li><a href='w10.html'>w10</a><li class='has-children'><a href='w14.html'>w14</a><ul class='dropdown'><li><a href='w14-1.html'>w14-1</a></li></ul><li><a href='w13.html'>w13</a><li><a href='w12.html'>w12</a></li></ul><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,9 +141,38 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content"> <a href='HW.html'>Next</a> >> HW<br /><h1>About</h1>
+    <div id="tipue_search_content"> <a href='cp2022.html'>Next</a> >> cp2022<br /><h1>About</h1>
+<p></p>
+<p><a href="https://mdecp2022.github.io/site-Jun41123/content/Brython.html?src=https://gist.githubusercontent.com/Jun41123/087f50b59b33ffa6ebe4ee0d248b6003/raw/293cf7c482776e8a27ad859414ecec3d20499c33/password_generator.py">w5 password generator</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 導入亂數模組
+import random
+# 導入字串模組
+import string
+# 利用 def 關鍵字定義函式
+# 函式的輸入變數可以設定初始值
+def password_generator(size=4, chars=string.ascii_lowercase + string.digits):
+    # 函式內以多行註解說明函式功能
+    """Generate random password
+    """
+    # 利用 return 關鍵字將所產生的亂數字串傳回
+    return ''.join(random.choice(chars) for _ in range(size))
+# 建立一個變數與隨後的字串對應
+pass_string = "abcdefghkmnpqrstuwxyz123456789"
+# 利用重複迴圈呼叫 password_generator() 函式 10 次
+for i in range(10):
+    print(password_generator(4, pass_string))</pre>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
 <p>cmsite: wcms use <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> as submodule</p>
-<br /> <a href='HW.html'>Next</a> >> HW</div>
+<br /> <a href='cp2022.html'>Next</a> >> cp2022</div>
         
     <!-- footer -->
       <div class="container">
