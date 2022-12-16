@@ -2,7 +2,7 @@
         <head>
         <title>cmsite</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,31 +141,51 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w13 << <a href='w13.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>w12</h1>
-<p><a href="https://mdecp2022.github.io/site-Jun41123/content/Brython.html?src=https://gist.githubusercontent.com/Jun41123/2c513dabcf2c7e9cdac8f40cfd85068a/raw/94974a99c3d75961e5642acdfe1d5a57c368cfa4/w12_hw_ex1.py">ex1</a></p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># Brython 的 input() 可以接受輸入提示字串, 跳出瀏覽器輸入表單後, 將輸入內容以字串取回
-user_input_temp = input("請輸入攝氏溫度值:")
-# 接著列出 user_input_temp 變數的資料型別
-print(type(user_input_temp))</pre>
-<p><a href="https://mdecp2022.github.io/site-Jun41123/content/Brython.html?src=https://gist.githubusercontent.com/Jun41123/2c513dabcf2c7e9cdac8f40cfd85068a/raw/900777031af23a73f315dbc0eed542973164ee97/w12_ex2.py">ex2</a></p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># Brython 的 input() 可以接受輸入提示字串, 跳出瀏覽器輸入表單後, 將輸入內容以字串取回
-user_input_temp = input("請輸入攝氏溫度值:")
+    <div id="tipue_search_content">w14 << <a href='w14.html'>Previous</a> <a href='w14-1.html'>Next</a> >> w14-1<br /><h1>w14-2</h1>
+<p><a href="https://gist.githubusercontent.com/Jun41123/f27edaea9cedd5324a24a7a1cc5c21b4/raw/46d48756e322ef111ecaa37cdc2be85aa9e15e3f/w14%2520hw">HW小考</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import ast
 
-# 接著列出 user_input_temp 變數的資料型別
-print(type(user_input_temp))
+# get stud_list first
 
-# 到這裡已知利用 input() 函式將傳回字串, 接著以 float() 將字串轉為浮點數
-user_input_temp = float(user_input_temp)
+def get_stud(c_name):
+    courses = {"1a": "0747", "1b": "0761", "2a": "0773", "2b": "0786"}
+    c = courses[c_name]
+    url = "https://nfu.cycu.org/?semester=1111&amp;courseno=" + c + "&amp;column=True"
+    data = open(url).read().split("\n")
+    stud = data[:-1]
+    return stud
+    
+cp_stud = get_stud("1a")
 
-# 因為攝氏溫度乘上 9/5 之後再加上 32 就可以得到對應的華氏溫度值
-Fahrenheit = (user_input_temp*9/5) + 32
+# get w10 quiz result
+cp_w10_quiz_url = "https://gist.githubusercontent.com/mdecycu/9df4b372ac1b7386cf259ced15f1a2b2/raw/a48d36ae883bde8efd07b25bfddaed8f13200353/2022_1209_cp_w14_1a_quiz.json"
 
-# 到這裡, Fahrenheit 資料型別為浮點數, 而 user_input_temp 在第 8 行也轉為浮點數
-# 要將兩個浮點數與字串相加, 都必須透過 str() 轉為字串
-
-print("攝氏 " + str(user_input_temp) + " 度, 等於華氏 " + str(Fahrenheit) + " 度.")</pre>
-<pre><br/><br/></pre>
-<br />w13 << <a href='w13.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+def get_score(url):
+    json_data = open(url).read()
+    big_dict = ast.literal_eval(json_data)
+    data = big_dict["body"]["testuser"]
+    quiz_dict = {}
+    for i in data:
+        stud_id = data[i]["user_name"]
+        stud_score = int(float(data[i]["total_score"]))
+        quiz_dict[stud_id] = stud_score
+    return quiz_dict
+    
+cp_quiz = get_score(cp_w10_quiz_url)
+cp_abs = []
+for stud in cp_stud:
+    try:
+        print(stud, cp_quiz[stud])
+    except:
+        # 缺考者沒有 quiz 成績
+        print(stud, "缺")
+        cp_abs.append(stud)
+# 列出缺考名單
+print("="*20)
+print("以下為 w10 缺考名單:")
+for stud in cp_abs:
+    print(stud)</pre>
+<p></p><br />w14 << <a href='w14.html'>Previous</a> <a href='w14-1.html'>Next</a> >> w14-1</div>
         
     <!-- footer -->
       <div class="container">
