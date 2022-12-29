@@ -413,7 +413,78 @@ for stud in cp_abs:
     print(stud)</pre>
 <p>心得:雖然考不好,但作業都有按時做</p>
 <h1>HW</h1>
-<h2>w10_HW2</h2>
+<h2>w11_HW</h2>
+<h3>小格子</h3>
+<p><a href="https://mdecp2022.github.io/site-Jun41123/content/Brython.html?src=https://gist.githubusercontent.com/Jun41123/e0f6c55ac72a410af9ec439cd96a625a/raw/cb1892690b8e588d3f8389e3936f162d82b38662/w11_hw.py">w11HW</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 這個程式用於 demo 以 canvas 畫線以及寫字
+# 從 Brython 程式庫中的 browser 模組導入 document 類別, 並以簡寫設定為 doc
+from browser import document as doc
+# 從 browser 模組導入 html 類別, 主要用於建立 CANVAS 標註物件, 並插入頁面中
+from browser import html
+# 利用 html 建立一個 CANVAS 標註物件, 與變數 canvas 對應
+canvas = html.CANVAS(width = 600, height = 600)
+# 將 canvas 標註的 id 設為 "canvas"
+canvas.id = "canvas"
+# 將 document 中 id 為 "brython_div1" 的標註 
+# 設為與 brython_div 變數對應
+brython_div = doc["brython_div1"]
+# 將 canvas 標註放入 brython_div 所在位置
+# 頁面中原本就已經放入 &lt;div id="brython_div"&gt;&lt;/div&gt; 標註
+brython_div &lt;= canvas
+# 將頁面中 id 為 canvas 的 CANVAS 設為與 canvas 變數對應
+canvas = doc["canvas"]
+# 將 canvas 的 2d 繪圖 context 命名為 ctx
+ctx = canvas.getContext("2d")
+# 建立一個 dRect() 函式
+# s default 為 1, c defaul 為紅色
+def dRect(lux, luy, w, h, s=1, c='#ff0000'):
+    ctx.lineWidth = s
+    ctx.strokeStyle = c
+    ctx.beginPath();
+    ctx.rect(lux, luy, w, h)
+    ctx.stroke();
+    
+# 建立畫直線函式
+def draw_line(x1, y1, x2, y2, color="#ff0000"):
+    ctx.beginPath()
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.strokeStyle = color
+    ctx.stroke()
+# 建立 write Text 函式
+def wText(x, y, t, s=14, c='#0000ff'):
+    ctx.font = str(s) + "px Arial";
+    ctx.fillText(t, x, y)
+# 定義畫格線的函式
+def grid(startx, starty, w, h, wnum, hnum, pixel=1, color="#ff0000"):
+    # 利用迴圈與座標增量繪圖
+    # 因為輸入 wnum 與 hnum 為格子數, 畫格線數則需加上 1
+    for i in range(wnum+1):
+        for j in range(hnum+1):
+            # 畫上下直線
+            yend = starty + h*(hnum)
+            xend = startx + w*(wnum)
+            x = startx + i*w
+            draw_line(x, starty, x, yend, color)
+            # 畫左右直線
+            y = starty + j*h
+            draw_line(startx, y, xend, y, color)
+            #wText(w/2-10, y-w/2, str(j))
+            
+# 設定格數
+num = 15
+# 設定線寬
+pixel = 1
+# 設定 w 寬度
+w = int(canvas.width/num) - pixel
+# 設定 h 高度
+h = int(canvas.height/num) - pixel
+# 設定繪圖座標點起點位置
+x = 1
+y = 1
+# 利用 grid 函式畫出格線
+grid(x, y, w, h, num, num, pixel=1, color="black")</pre>
+<p></p><h2>w10_HW2</h2>
 <h3>變數基本法</h3>
 <p><a href="https://mdecp2022.github.io/site-Jun41123/content/Brython.html?src=https://gist.githubusercontent.com/Jun41123/17f0ebb87929e099ee08eb92c86a5ff8/raw/3aae8db3d8b692e4fd95167ae79a788e89858027/w10_hw2">HW2</a></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">a = [i for i in range(1, 10, 2)]
@@ -553,8 +624,8 @@ grid(origx, origy, w, h, wnum, hnum, pixel=1, color="black")
 
 doc["power"].bind("click", launchAnimation)</pre>
 <p></p>
-<h2>w15</h2>
-<p>HW</p>
+<h2>w15_HW</h2>
+<h3>問題</h3>
 <p>1. 為何學習計算機程式需要建立個人倉儲?</p>
 <p>A: 這樣才可以建立一個網站 .<br/> <br/>2. 全球資訊網能夠提供甚麼功能或有什麼優點?</p>
 <p>A:<span style="font-weight: 400;">是透過網際網路存取的，由許多互相連結的超文字組成的資訊系統 .網頁主要是文字檔案格式化和超文件標示語言（HTML) .除了格式化文字之外，網頁還可能包含圖片、影片、聲音和軟體元件，這些元件會在使用者的網頁瀏覽器中呈現為多媒體內容的連貫頁面 .</span></p>
@@ -570,11 +641,8 @@ doc["power"].bind("click", launchAnimation)</pre>
 <p>6. 能夠直接在瀏覽器中以 Brython 繪製中華民國國旗, 或模擬綠色方塊在方塊格點中任意移動, 代表甚麼?</p>
 <p>A:神奇 .</p>
 <p>7. 變數, 字串, 整數, 浮點數, 數列, Tuple, Dictionary, 函式, 重複迴圈, class, 物件導向, 資料庫, 這些名詞對您而言代表甚麼??</p>
-<p>A:利用 for 迴圈執行變數增量或重複執行特定程序 .</p>
-<p>心得: 有時候在聽課我能快速吸收,但有時真的都聽不太懂 .</p>
-<h2>w14</h2>
-<p></p>
-<h3>w14-1</h3>
+<p>A:利用 for 迴圈執行變數增量或重複執行特定程序 .</p><h2>w14_HW</h2>
+<p></p><h3>w14-1</h3>
 <!-- 
 在動態網站頁面中啟用 Brython 執行環境的用法, 請注意動態網站執行所在路徑
 -->
