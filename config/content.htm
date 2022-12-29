@@ -322,7 +322,51 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
 <h1>總心得</h1>
 <p>剛開始修這門課覺得很難,但慢慢地學慢慢地做,現在感覺做得不錯ㄟ.</p><h1>考試</h1>
-<h2>W10小考</h2>
+<h2>w16小考</h2>
+<p><a href="https://mdecp2022.github.io/site-Jun41123/content/Brython.html?src=https://gist.githubusercontent.com/Jun41123/6fda564e586e43f02e891da1b3bc69c0/raw/6f8ac40b211097e5e65fb053e6d1b50b9f17d7b4/w16_%25E5%25B0%258F%25E8%2580%2583">HW小考</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import ast
+
+# get stud_list first
+
+def get_stud(c_name):
+    courses = {"1a": "0747", "1b": "0761", "2a": "0773", "2b": "0786"}
+    c = courses[c_name]
+    url = "https://nfu.cycu.org/?semester=1111&amp;courseno=" + c + "&amp;column=True"
+    data = open(url).read().split("\n")
+    stud = data[:-1]
+    return stud
+    
+cp_stud = get_stud("1a")
+
+# get w10 quiz result
+cp_w10_quiz_url = "https://gist.githubusercontent.com/mdecycu/9df4b372ac1b7386cf259ced15f1a2b2/raw/978e28cbb0492ce9c7a33ec96ba2646ed9fd7ddb/1a_w16_quiz.json"
+
+def get_score(url):
+    json_data = open(url).read()
+    big_dict = ast.literal_eval(json_data)
+    data = big_dict["body"]["testuser"]
+    quiz_dict = {}
+    for i in data:
+        stud_id = data[i]["user_name"]
+        stud_score = int(float(data[i]["total_score"]))
+        quiz_dict[stud_id] = stud_score
+    return quiz_dict
+    
+cp_quiz = get_score(cp_w10_quiz_url)
+cp_abs = []
+for stud in cp_stud:
+    try:
+        print(stud, cp_quiz[stud])
+    except:
+        # 缺考者沒有 quiz 成績
+        print(stud, "缺")
+        cp_abs.append(stud)
+# 列出缺考名單
+print("="*20)
+print("以下為 w10 缺考名單:")
+for stud in cp_abs:
+    print(stud)</pre>
+<p></p><h2>W10小考</h2>
 <p><a href="https://mdecp2022.github.io/site-Jun41123/content/Brython.html?src=https://gist.githubusercontent.com/Jun41123/17f0ebb87929e099ee08eb92c86a5ff8/raw/2b0da56468da738084427e8b1bd4cc208dcd83f1/w10_HW1">HW小考</a></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import ast
 
